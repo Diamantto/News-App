@@ -8,7 +8,7 @@ import com.example.mvvmnews.R
 import com.example.mvvmnews.databinding.ActivityNewsBinding
 
 class NewsActivity : AppCompatActivity() {
-    lateinit var binding: ActivityNewsBinding
+    private lateinit var binding: ActivityNewsBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
