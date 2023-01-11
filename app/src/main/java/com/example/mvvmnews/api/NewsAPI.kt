@@ -1,6 +1,6 @@
 package com.example.mvvmnews.api
 
-import com.example.mvvmnews.NewsResponse
+import com.example.mvvmnews.models.NewsResponse
 import com.example.mvvmnews.util.Constants.Companion.API_KEY
 import retrofit2.Response
 import retrofit2.http.GET
@@ -16,7 +16,7 @@ interface NewsAPI {
         pageNumber: Int = 1,
         @Query("apiKey")
         apiKey: String = API_KEY
-    ) : Response<NewsResponse>
+    ): Response<NewsResponse>
 
     @GET("v2/everything")
     suspend fun searchForNews(
@@ -26,5 +26,5 @@ interface NewsAPI {
         pageNumber: Int = 1,
         @Query("apiKey")
         apiKey: String = API_KEY
-    ) : Response<NewsResponse>
+    ): Response<NewsResponse>
 }
