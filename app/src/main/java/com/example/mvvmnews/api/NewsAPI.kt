@@ -2,6 +2,7 @@ package com.example.mvvmnews.api
 
 import com.example.mvvmnews.models.NewsResponse
 import com.example.mvvmnews.util.Constants.Companion.API_KEY
+import com.example.mvvmnews.util.Constants.Companion.QUERY_PAGE_SIZE
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -22,6 +23,8 @@ interface NewsAPI {
     suspend fun searchForNews(
         @Query("q")
         searchQuery: String,
+        @Query("pageSize")
+        pageSize: Int = QUERY_PAGE_SIZE,
         @Query("page")
         pageNumber: Int = 1,
         @Query("apiKey")
