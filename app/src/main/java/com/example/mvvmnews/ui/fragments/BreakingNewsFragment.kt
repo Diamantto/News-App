@@ -11,6 +11,7 @@ import com.example.mvvmnews.R
 import com.example.mvvmnews.adapters.NewsAdapter
 import com.example.mvvmnews.databinding.FragmentBreakingNewsBinding
 import com.example.mvvmnews.ui.NewsActivity
+import com.example.mvvmnews.util.Constants.Companion.COUNTRY_CODE
 import com.example.mvvmnews.util.Constants.Companion.QUERY_PAGE_SIZE
 import com.example.mvvmnews.util.Resource
 
@@ -86,19 +87,20 @@ class BreakingNewsFragment : BaseFragment(R.layout.fragment_breaking_news) {
 
         override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
             super.onScrolled(recyclerView, dx, dy)
+
             val layoutManager = recyclerView.layoutManager as LinearLayoutManager
             val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
             val visibleItemCount = layoutManager.childCount
             val totalItemCount = layoutManager.itemCount
 
-            val isNotLoadingAndNotLastPAge = !isLoading && !isLastPage
+            val isNotLoadingAndNotLastPage = !isLoading && !isLastPage
             val isAtLastItem = firstVisibleItemPosition + visibleItemCount >= totalItemCount
             val isNotAtBeginning = firstVisibleItemPosition >= 0
             val isTotalMoreThanVisible = totalItemCount >= QUERY_PAGE_SIZE
             val shouldPaginate =
-                isNotLoadingAndNotLastPAge && isAtLastItem && isNotAtBeginning && isTotalMoreThanVisible && isScrolling
+                isNotLoadingAndNotLastPage && isAtLastItem && isNotAtBeginning && isTotalMoreThanVisible && isScrolling
             if (shouldPaginate) {
-                viewModel.getBreakingNews("ua")
+                viewModel.getBreakingNews(COUNTRY_CODE)
                 isScrolling = false
             }
         }
