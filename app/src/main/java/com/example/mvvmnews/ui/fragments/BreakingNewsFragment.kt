@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.AbsListView
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -18,8 +19,6 @@ import com.example.mvvmnews.util.Resource
 class BreakingNewsFragment : BaseFragment(R.layout.fragment_breaking_news) {
 
     private lateinit var binding: FragmentBreakingNewsBinding
-
-    val TAG: String = "BreakingNewsFragment"
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -53,7 +52,7 @@ class BreakingNewsFragment : BaseFragment(R.layout.fragment_breaking_news) {
                 is Resource.Error -> {
                     hideProgressBar()
                     response.message?.let { message ->
-                        Log.e(TAG, "An error occurred: $message")
+                        Toast.makeText(activity, "An error occured: $message", Toast.LENGTH_LONG).show()
                     }
                 }
                 is Resource.Loading -> {
